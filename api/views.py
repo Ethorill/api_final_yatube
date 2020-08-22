@@ -1,12 +1,11 @@
 from rest_framework import viewsets, filters
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.generics import get_object_or_404
-from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters import rest_framework as dgango_filtres
 
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.generics import get_object_or_404
 
-from .serializers import PostSerializer, CommentSerializer, GroupSerializer, FollowSerializer
+from .serializers import PostSerializer, CommentSerializer, GroupSerializer, \
+    FollowSerializer
 from .models import Post, Comment, Group, Follow
 from .permissions import IsOwnerOrReadOnly, CantFollowOnUrSelf
 
@@ -30,7 +29,6 @@ class CommentViewSetApi(viewsets.ModelViewSet):
         post_id = self.kwargs['post_id']
         queryset = self.get_queryset()
         serializer.save(author=self.request.user, post_id=post_id)
-
 
     def get_queryset(self):
         post_id = self.kwargs['post_id']
