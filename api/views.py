@@ -43,9 +43,6 @@ class GroupViewSetApi(viewsets.ModelViewSet):
     http_method_names = ('post', 'get')
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-    def perform_create(self, serializer):
-        serializer.save()
-
 
 class FlowViewSetApi(viewsets.ModelViewSet):
     queryset = Follow.objects.all()
