@@ -1,5 +1,5 @@
 from rest_framework import viewsets, filters
-from django_filters import rest_framework as dgango_filtres
+from django_filters import rest_framework as django_filters
 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.generics import get_object_or_404
@@ -14,7 +14,7 @@ class PostViewSetApi(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
-    filter_backends = [dgango_filtres.DjangoFilterBackend]
+    filter_backends = [django_filters.DjangoFilterBackend]
     filterset_fields = ['group', ]
 
     def perform_create(self, serializer):
